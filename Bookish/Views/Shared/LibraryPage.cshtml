@@ -1,0 +1,14 @@
+﻿@model Bookish.Models.View.BookViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Welcome to the Library!</h2>
+<p>Here are our books of the week:</p>
+<ul>
+    @foreach (var book in Model.BookList)
+    {
+        <li>@book.Title by @book.AuthorFirstName @book.AuthorLastName</li>
+    }
+</ul>

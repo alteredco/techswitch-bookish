@@ -9,6 +9,7 @@ using Bookish.Models.Database;
 using Bookish.Models.Response;
 using Dapper;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
 
 namespace Bookish.Models.Services
 {
@@ -27,18 +28,16 @@ namespace Bookish.Models.Services
 
     public class BookService: IBookService
     {
-         private string connectionString = "Server=localhost; Database=bookish; Uid=wendy; Pwd=; Trusted_Connection=True;";
+         private string connectionString = "Server=localhost; Database=bookish; Uid=root; Pwd=;";
         // private readonly ConnectionString _connectionString;
 
         public IEnumerable<Book> GetAll()
         {
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new MySqlConnection(connectionString))
             {
-                connection.Open();
                 string query = @"SELECT * FROM book";
+                DefaultTypeMap.MatchNamesWithUnderscores = true;
                 List<Book> books = connection.Query<Book>(query).ToList();
-                Console.WriteLine(books);
-                Console.ReadLine();
                 return books;
             }
             /*public void Add(BookService newBook)
