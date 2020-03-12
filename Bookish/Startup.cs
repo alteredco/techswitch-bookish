@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +26,7 @@ namespace Bookish
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.Configure<ConnectionString>(Configuration.GetSection("BookishConnection"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

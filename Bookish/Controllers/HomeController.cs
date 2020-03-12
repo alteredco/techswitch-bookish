@@ -9,7 +9,7 @@ using Bookish.Models;
 
 namespace Bookish.Controllers
 {
-    [Route("bookish")]
+    [Route("")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,17 +17,18 @@ namespace Bookish.Controllers
         {
             _logger = logger;
         }
-        [HttpGet("/")]
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();
         }
+        
         [HttpGet("/privacy")]
         public IActionResult Privacy()
         {
             return View("Privacy");
         }
-
+        [HttpGet("/error")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

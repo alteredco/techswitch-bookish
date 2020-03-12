@@ -1,10 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Bookish.Models.Database;
+using Bookish.Models.Services;
 
-namespace Bookish.Models.Database
+namespace Bookish.Models.Response
 {
-    public class Book
+    public class CreateBookModel
     {
+        private Book _book;
+
+        public CreateBookModel(Book book)
+        {
+            _book = book;
+        }
+            
         public int Id { get; set; }
         public string Title { get; set; }
         public string AuthorFirstName { get; set; }
