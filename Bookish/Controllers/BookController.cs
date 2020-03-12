@@ -10,11 +10,16 @@ namespace Bookish.Controllers
     [Route("/library")]
     public class BookController : Controller
     {
+        private readonly BookService _bookService;
+        public BookController()
+        {
+            _bookService = new BookService();
+        }
+        
         [HttpGet("")]
         public IActionResult LibraryPage()
         {
-            BookService books = new BookService();
-            IEnumerable<Book> bookData = books.GetAll();
+            IEnumerable<Book> bookData = _bookService.GetAll();
             BookViewModel library = new BookViewModel(bookData);
 
             return View(library);
