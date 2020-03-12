@@ -1,0 +1,14 @@
+﻿@using Bookish.Models.Database
+@using Bookish.Models.View
+@model Bookish.Models.View.LoanViewModel
+
+@{
+    Layout = "_Layout";
+}
+<p>Here is the current list of loans: </p>
+<ul>
+    @foreach (var loan in Model.LoanList)
+    {
+        <li>Book Id:@loan.BookId Date out: @loan.DateOut Due Date:@loan.DueDate Status: @loan.Status</li>
+    }
+</ul>

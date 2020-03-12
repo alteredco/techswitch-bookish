@@ -1,0 +1,14 @@
+﻿@model Bookish.Models.View.MemberViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Welcome to the Membership Page!</h2>
+<p>Here are our members of the week:</p>
+<ul>
+    @foreach (var member in Model.MemberList)
+    {
+        <li>@member.MemberFirstName @member.MemberLastName</li>
+    }
+</ul>
