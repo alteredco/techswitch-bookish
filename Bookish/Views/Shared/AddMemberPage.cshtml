@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Add Library Member</h2>
+<form method="post">
+    <fieldset>
+        <p>
+            <label for="memberFirstName">First Name</label>
+            <input name="memberFirstName" type="text" id="memberFirstName"/>
+        </p>
+        <p>
+            <label for="memberLastName">Last Name</label>
+            <input name="memberLastName" type="text" id="memberLastName"/>
+        </p>
+        <p>
+        <label for="email">Email Address</label>
+        <input name="email" type="text" id="email"/>
+        </p>
+        <button class="submit" type="submit">Add New Member</button>
+    </fieldset>
+</form>

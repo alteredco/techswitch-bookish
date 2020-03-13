@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Add Book</h2>
+<form asp-controller="Book" asp-action="AddBookPage" method="post">
+    <fieldset>
+        <p>
+            <label asp-for="title">Book Title</label>
+            <input asp-for="title" name="title" type="text" id="title"/>
+            <span asp-validation-for="title"></span>
+        </p>
+        <p>
+            <label asp-for="authorFirstName">Author First Name</label>
+            <input asp-for="authorFirstName" name="authorFirstName" type="text" id="authorFirstName"/>
+            <span asp-validation-for="authorFirstName"></span>
+        </p>
+        <p>
+            <label asp-for="authorLastName">Author Last Name</label>
+            <input asp-for="authorLastName" name="authorLastName" type="text" id="authorLastName"/>
+            <span asp-validation-for="authorLastName"></span>
+        </p>
+        <p>
+            <label asp-for="genre">Genre</label>
+            <input asp-for="genre" name="genre" type="text" id="genre"/>
+            <span asp-validation-for="genre"></span>
+        </p>
+        <p>
+            <label asp-for="isbn">ISBN Number</label>
+            <input asp-for="isbn" name="isbn" type="text" id="isbn"/>
+            <span asp-validation-for="isbn"></span>
+        </p>
+        <button class="submit" type="submit">Add Book To Library</button>
+    </fieldset>
+</form>

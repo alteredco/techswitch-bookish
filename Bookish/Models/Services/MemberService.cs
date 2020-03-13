@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Bookish.Models.Database;
@@ -16,7 +17,15 @@ namespace Bookish.Models.Services
 
     public class MemberService
     {
-        private string connectionString = "Server=localhost; Database=bookish; Uid=root; Pwd=;";
+        private string connectionString = "Server=localhost; Database=bookish; Uid=root; Pwd=";
+        
+        public IDbConnection Connection
+        {
+            get
+            {
+                return  new MySqlConnection(connectionString);
+            }
+        }
 
         public IEnumerable<Member> GetAll()
         {
@@ -26,6 +35,16 @@ namespace Bookish.Models.Services
                 DefaultTypeMap.MatchNamesWithUnderscores = true;
                 List<Member> members = connection.Query<Member>(query).ToList();
                 return members;
+            }
+        }
+        
+        public void AddMember(Member newMember)
+        {
+            using (var connection = Connection)
+            {
+                string query = @"INSERT INTO member (member_first_name, member_last_name, email, address_id) VALUES(@memberFirstName, @memberLastName, @email)";
+                DefaultTypeMap.MatchNamesWithUnderscores = true;
+                connection.Execute(query,new {memberFirstName = newMember.MemberFirstName, memberLastName = newMember.MemberLastName, email = newMember.Email});
             }
         }
         

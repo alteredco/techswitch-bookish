@@ -23,5 +23,23 @@ namespace Bookish.Controllers
 
             return View(members);
         }
+        
+        //POST: /Member/Create
+        [HttpGet("/membership")]
+        public IActionResult AddMemberPage()
+        {
+            return View();
+        }
+        
+        [HttpPost("/membership")]
+        public IActionResult AddMemberPage([FromForm]Member member)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("AddMemberPage");
+            } 
+            _memberService.AddMember(member);
+            return Redirect(Url.Action("MembersPage"));
+        }
     }
 }

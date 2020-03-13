@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bookish.Models.Database;
+using Bookish.Models.Response;
 using Bookish.Models.Services;
 using Bookish.Models.View;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ namespace Bookish.Controllers
             _bookService = new BookService();
         }
         
+        //GET:/Library
         [HttpGet("")]
         public IActionResult LibraryPage()
         {
@@ -24,36 +26,25 @@ namespace Bookish.Controllers
 
             return View(library);
         }
-
-        /*public BookController()
+        
+        
+        //POST: /Library/Create
+        [HttpGet("/create")]
+        public IActionResult AddBookPage()
         {
-            _service = new BookService();
-        }
-    
-        public BookController(IBookService service)
-        {
-            _service = service;
-        }*/
-
-        /*public ActionResult Index()
-        {
-            return View(_service.GetAll());
+            return View();
         }
         
-        //GET: /Book/Create
-        public IActionResult GetAll()
+        [HttpPost("/create")]
+        public IActionResult AddBookPage([FromForm]Book book)
         {
-            return View(_service.GetAll());
-        }
-        
-        //POST: /Book/Create
-        public IActionResult CreateBook()
-        {
-            if (!_service.CreateBook())
+            if (!ModelState.IsValid)
             {
-                /*return View();#1#
-            }
-            return RedirectToAction("Index");
-        }*/
+                return View("AddBookPage");
+            } 
+            _bookService.AddBook(book);
+            return Redirect(Url.Action("LibraryPage"));
+        }
+            
     }
 }
